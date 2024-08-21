@@ -54,7 +54,7 @@ const Header = () => {
             onClick={GptHandleClick}
             className="py-2 px-4 m-2 font-bold bg-slate-700 text-white whitespace-nowrap rounded-md"
           >
-            {showGptSearch ? "Home" : "GPT Search"}
+            {showGptSearch ? "Home" : "Search"}
           </button>
           <button
             onClick={handleSignOut}

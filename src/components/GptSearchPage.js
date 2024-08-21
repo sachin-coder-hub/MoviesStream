@@ -6,7 +6,7 @@ import { IMG_SearchPageBg } from "../utils/constant";
 const GptSearchPage = () => {
   return (
     <div>
-      <div className="absolute -z-10">
+      <div className="fixed -z-10">
         <img src={IMG_SearchPageBg} alt="Bg-img" />
       </div>
       <GptSearchBar />
