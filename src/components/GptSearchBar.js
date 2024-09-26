@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { API_OPTIONS } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { addSearchResults } from "../utils/gptSlice";
@@ -6,18 +6,24 @@ import { addSearchResults } from "../utils/gptSlice";
 const GptSearchBar = () => {
   const searchText = useRef(" ");
   const dispatch = useDispatch();
+  const [err, setErr] = useState("");
   const handleGptsearchClick = async (movie) => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/search/movie?query=" +
-        movie +
-        "&include_adult=false&language=en-US&page=1",
-      API_OPTIONS
-    );
-    const json = await data.json();
-    console.log(json.results);
-    dispatch(
-      addSearchResults({ searchResults: json.results, searchKey: movie })
-    );
+    if (movie === "") {
+      setErr("Please enter a movie name");
+    } else {
+      const data = await fetch(
+        "https://api.themoviedb.org/3/search/movie?query=" +
+          movie +
+          "&include_adult=false&language=en-US&page=1",
+        API_OPTIONS
+      );
+      const json = await data.json();
+      console.log(json.results);
+      setErr("");
+      dispatch(
+        addSearchResults({ searchResults: json.results, searchKey: movie })
+      );
+    }
   };
   return (
     <div className="pt-[50%] flex justify-center md:pt-[10%] p-0">
@@ -37,6 +43,7 @@ const GptSearchBar = () => {
         >
           Find
         </button>
+        <p className="col-span-12 text-red-600 font-bold ml-4 mb-2">{err}</p>
       </form>
     </div>
   );
