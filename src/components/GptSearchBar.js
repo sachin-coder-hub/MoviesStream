@@ -8,22 +8,17 @@ const GptSearchBar = () => {
   const dispatch = useDispatch();
   const [err, setErr] = useState("");
   const handleGptsearchClick = async (movie) => {
-    if (movie === "") {
-      setErr("Please enter a movie name");
-    } else {
-      const data = await fetch(
-        "https://api.themoviedb.org/3/search/movie?query=" +
-          movie +
-          "&include_adult=false&language=en-US&page=1",
-        API_OPTIONS
-      );
-      const json = await data.json();
-      console.log(json.results);
-      setErr("");
-      dispatch(
-        addSearchResults({ searchResults: json.results, searchKey: movie })
-      );
-    }
+    const data = await fetch(
+      "https://api.themoviedb.org/3/search/movie?query=" +
+        movie +
+        "&include_adult=false&language=en-US&page=1",
+      API_OPTIONS
+    );
+    const json = await data.json();
+    console.log(json.results);
+    dispatch(
+      addSearchResults({ searchResults: json.results, searchKey: movie })
+    );
   };
   return (
     <div className="pt-[50%] flex justify-center md:pt-[10%] p-0">
