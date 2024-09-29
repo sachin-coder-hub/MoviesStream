@@ -77,15 +77,19 @@ const MovieDetailsPage = () => {
         >
           <CircleArrowLeft size={40} />{" "}
         </div>
-        <div className="text-white absolute ml-14 top-[250px] ">
-          <h1 className="font-semiboldbold text-6xl">{movies?.title}</h1>
-          <p className="mt-2 w-[60%]">{movies?.overview}</p>
+        <div className="text-white lg:absolute ml-14 lg:top-[250px] lg:px-6 sm:relative sm:top-0 sm:mt-4 sm:px-4 xs:px-2">
+          <h1 className="font-semiboldbold text-3xl md:text-5xl lg:text-6xl xs:text-2xl">
+            {movies?.title}
+          </h1>
+          <p className="mt-2 text-sm md:text-lg lg:text-xl xs:text-xs w-full md:w-[80%] lg:w-[60%]">
+            {movies?.overview}
+          </p>
           <div className="flex ml-[-15px] mt-6">
             {movies?.genres?.map((genre) => {
               return (
                 <p
                   key={genre?.id}
-                  className="rounded-full ml-2 px-4 py-2 bg-brand-charcoal text-white"
+                  className="rounded-full text-xs md:text-sm lg:text-base xs:text-[10px] ml-2 px-2 md:px-4 py-1 md:py-2 bg-brand-charcoal text-white"
                 >
                   {genre?.name}
                 </p>
