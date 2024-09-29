@@ -6,7 +6,6 @@ import { addSearchResults } from "../utils/gptSlice";
 const GptSearchBar = () => {
   const searchText = useRef(" ");
   const dispatch = useDispatch();
-  const [err, setErr] = useState("");
   const handleGptsearchClick = async (movie) => {
     const data = await fetch(
       "https://api.themoviedb.org/3/search/movie?query=" +
@@ -38,7 +37,6 @@ const GptSearchBar = () => {
         >
           Find
         </button>
-        <p className="col-span-12 text-red-600 font-bold ml-4 mb-2">{err}</p>
       </form>
     </div>
   );
