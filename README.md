@@ -1,4 +1,4 @@
-# Netflix-Gpt
+# MovieStream
 
 - Creacte-rect-app
 - Configured Tailwind
