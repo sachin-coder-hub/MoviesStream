@@ -96,7 +96,7 @@ const Login = () => {
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute w-96 md:w-3/12 p-12 my-36 bg-black mx-auto right-0 left-0 text-white rounded-lg bg-opacity-75"
+        className="absolute w-96 md:w-3/12 p-12 my-36 bg-black mx-auto right-0 left-0 text-white rounded-lg bg-opacity-65"
       >
         <h1 className="font-bold text-3xl py-4 m-2">
           {isSignInForm ? "Sign In" : "Sign Up"}
@@ -133,6 +133,10 @@ const Login = () => {
             ? "New to Netflix? Sign Up Now."
             : "Already a user? Sign In Now."}
         </h2>
+        <p className="text-gray-400">
+          Disclaimer:This is a personal portfolio project and is not affiliated
+          with Netflix. It uses the TMDB API for educational purposes only.
+        </p>
       </form>
     </div>
   );

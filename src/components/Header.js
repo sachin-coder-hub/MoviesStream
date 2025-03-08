@@ -13,6 +13,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {})
@@ -20,6 +21,7 @@ const Header = () => {
         navigate("/error");
       });
   };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -38,7 +40,7 @@ const Header = () => {
         navigate("/");
       }
     });
-    return () => unsubscribe(); // This unsubscribes the onAuthStateChanged function when component unmounts
+    return () => unsubscribe();
   }, []);
 
   const GptHandleClick = () => {
@@ -46,24 +48,31 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute w-full px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between ">
-      <img className="w-44 mx-auto md:mx-0" src={netflixLogo} alt="logo" />
+    <div className="absolute w-full px-4 md:px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between items-center">
+      {/* Netflix Logo */}
+      <img
+        className="w-32 md:w-52 h-auto" 
+        src={netflixLogo}
+        alt="logo"
+      />
+
+      {/* Buttons and Avatar */}
       {user && (
-        <div className="flex p-2 justify-between">
+        <div className="flex items-center space-x-2 md:space-x-4 mt-2 md:mt-0">
           <button
             onClick={GptHandleClick}
-            className="py-2 px-4 m-2 font-bold bg-slate-700 text-white whitespace-nowrap rounded-md"
+            className="py-1 px-2 md:py-2 md:px-4 text-sm md:text-base font-bold bg-slate-700 text-white whitespace-nowrap rounded-md"
           >
             {showGptSearch ? "Home" : "Search"}
           </button>
           <button
             onClick={handleSignOut}
-            className="p-2 m-2 font-bold text-white bg-red-800 whitespace-nowrap rounded-md"
+            className="py-1 px-2 md:py-2 md:px-4 text-sm md:text-base font-bold text-white bg-red-800 whitespace-nowrap rounded-md"
           >
             Sign Out
           </button>
           <img
-            className="hidden md:block w-12 h-12 m-2 rounded-3xl"
+            className="w-8 h-8 md:w-12 md:h-12 rounded-full"
             src={user?.photoURL}
             alt="avatar"
           />
